@@ -28,7 +28,7 @@ export const Route = createFileRoute("/matches/$matchId")({
 });
 
 function MatchDetail() {
-  const { match } = Route.useLoaderData();
+  const { match } = Route.useLoaderData() as { match: Match };
   const navigate = useNavigate();
   const [quantities, setQuantities] = useState<Record<Category, number>>({
     Cat1: 0, Cat2: 0, Cat3: 0, Cat4: 0,
