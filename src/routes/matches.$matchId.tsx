@@ -4,8 +4,10 @@ import matchAction from "@/assets/match-action.jpg";
 import { formatDate, formatUsd, getMatch, type Category } from "@/lib/matches";
 import { readCart, setCart } from "@/lib/cart";
 
+import type { Match } from "@/lib/matches";
+
 export const Route = createFileRoute("/matches/$matchId")({
-  loader: ({ params }) => {
+  loader: ({ params }): { match: Match } => {
     const match = getMatch(params.matchId);
     if (!match) throw notFound();
     return { match };
