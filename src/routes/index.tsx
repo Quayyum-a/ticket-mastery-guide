@@ -7,8 +7,8 @@ import { MatchCard } from "@/components/MatchCard";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "World Cup Tix — Tickets for FIFA World Cup 26™" },
-      { name: "description", content: "All 104 matches. Real FIFA categories. Pay with Bitcoin. The fan-first way to get to the World Cup." },
+      { title: "FIFA World Cup 26™ Official Ticketing" },
+      { name: "description", content: "Official FIFA World Cup 2026 ticketing platform. 104 matches across USA, Canada, and Mexico. Secure your tickets now." },
     ],
   }),
   component: Home,
@@ -34,7 +34,7 @@ function Home() {
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-              On sale now · Visa presale
+              Official FIFA Ticketing Platform
             </span>
             <h1 className="mt-6 font-display text-5xl leading-none tracking-wider sm:text-7xl md:text-8xl">
               THE WORLD'S<br />
@@ -42,7 +42,7 @@ function Home() {
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground">
               FIFA World Cup 26™ — 104 matches across the USA, Canada and Mexico.
-              Browse the schedule, pick your seats, and check out with Bitcoin.
+              Official ticketing platform. Secure your seats with Bitcoin payment.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -106,8 +106,8 @@ function Home() {
             </h2>
             <p className="mt-4 max-w-md text-muted-foreground">
               From the opening match at Estadio Azteca to the Final at MetLife
-              Stadium — secure your place in the stands. Every category, every
-              host city, one checkout.
+              Stadium — secure your official FIFA World Cup 26™ tickets. 
+              Every category, every host city, secure checkout.
             </p>
             <Link
               to="/matches"

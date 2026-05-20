@@ -7,8 +7,8 @@ import { readCart, setCart, clearCart, BTC_USD, usdToBtc, formatBtc, type CartIt
 export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
-      { title: "Checkout — World Cup Tix" },
-      { name: "description", content: "Review your World Cup tickets and pay with Bitcoin." },
+      { title: "Checkout — FIFA World Cup 26™ Official Ticketing" },
+      { name: "description", content: "Complete your FIFA World Cup 2026 ticket purchase. Secure Bitcoin payment processing." },
     ],
   }),
   component: CheckoutPage,

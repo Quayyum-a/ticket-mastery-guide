@@ -6,8 +6,8 @@ import { MatchCard } from "@/components/MatchCard";
 export const Route = createFileRoute("/matches/")({
   head: () => ({
     meta: [
-      { title: "All matches — World Cup Tix" },
-      { name: "description", content: "Search and filter all 104 FIFA World Cup 2026 matches by team, city, or stage." },
+      { title: "All Matches — FIFA World Cup 26™ Official Ticketing" },
+      { name: "description", content: "Browse all 104 FIFA World Cup 2026 matches. Filter by team, city, or stage. Official ticketing platform." },
     ],
   }),
   component: MatchesPage,

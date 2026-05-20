@@ -22,10 +22,10 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2">
           <span className="grid h-8 w-8 place-items-center rounded-md gradient-gold text-primary-foreground font-bold">
-            W
+            FIFA
           </span>
           <span className="font-display text-xl tracking-wider">
-            WORLD CUP <span className="text-gradient-gold">TIX</span>
+            WORLD CUP <span className="text-gradient-gold">26™</span>
           </span>
         </Link>
 

@@ -15,11 +15,11 @@ export const Route = createFileRoute("/matches/$matchId")({
   head: ({ loaderData }) => {
     const m = loaderData?.match;
     if (!m) return { meta: [{ title: "Match — World Cup Tix" }] };
-    const title = `${m.homeTeam} vs ${m.awayTeam} — ${m.stage} | World Cup Tix`;
+    const title = `${m.homeTeam} vs ${m.awayTeam} — ${m.stage} | FIFA World Cup 26™`;
     return {
       meta: [
         { title },
-        { name: "description", content: `${m.stage} · ${formatDate(m.date)} · ${m.venue}, ${m.city}. Tickets from ${formatUsd(Math.min(...m.prices.map(p => p.priceUsd)))}.` },
+        { name: "description", content: `${m.stage} · ${formatDate(m.date)} · ${m.venue}, ${m.city}. Official FIFA tickets from ${formatUsd(Math.min(...m.prices.map(p => p.priceUsd)))}.` },
         { property: "og:title", content: title },
       ],
     };

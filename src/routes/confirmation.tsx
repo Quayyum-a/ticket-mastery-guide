@@ -4,7 +4,7 @@ import { formatUsd } from "@/lib/matches";
 import { formatBtc } from "@/lib/cart";
 
 export const Route = createFileRoute("/confirmation")({
-  head: () => ({ meta: [{ title: "Order confirmed — World Cup Tix" }] }),
+  head: () => ({ meta: [{ title: "Order Confirmed — FIFA World Cup 26™ Official Ticketing" }] }),
   component: ConfirmationPage,
 });
 
