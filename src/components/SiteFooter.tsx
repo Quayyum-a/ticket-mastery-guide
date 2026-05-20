@@ -31,7 +31,6 @@ export function SiteFooter() {
       <div className="border-t border-border py-4 text-center text-xs text-muted-foreground">
         © {new Date().getFullYear()} FIFA World Cup 26™ Official Ticketing Platform
       </div>
-      </div>
     </footer>
   );
 }
