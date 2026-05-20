@@ -17,15 +17,11 @@ export const Route = createFileRoute("/checkout")({
 const SERVICE_FEE_RATE = 0.12; // 12% service fee, like Ticketmaster-style
 const DELIVERY_FEE = 4.5;
 
+const MERCHANT_BTC_ADDRESS = "bc1qxnvqnsq9espec2ahsnkzdl3jqxtgsdveu6rzqv";
+
 const checkoutSchema = z.object({
   email: z.string().trim().email("Enter a valid email").max(255),
   fullName: z.string().trim().min(2, "Enter your full name").max(120),
-  btcAddress: z
-    .string()
-    .trim()
-    .min(26, "BTC address looks too short")
-    .max(90, "BTC address looks too long")
-    .regex(/^(bc1|tb1|[13])[A-Za-z0-9]{20,87}$/, "That doesn't look like a valid BTC address"),
 });
 
 function CheckoutPage() {
@@ -33,7 +29,6 @@ function CheckoutPage() {
   const [items, setItems] = useState<CartItem[]>([]);
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
-  const [btcAddress, setBtcAddress] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
 
@@ -68,7 +63,7 @@ function CheckoutPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (enriched.length === 0) return;
-    const parsed = checkoutSchema.safeParse({ email, fullName, btcAddress });
+    const parsed = checkoutSchema.safeParse({ email, fullName });
     if (!parsed.success) {
       const errs: Record<string, string> = {};
       for (const issue of parsed.error.issues) {
@@ -85,7 +80,7 @@ function CheckoutPage() {
       orderId,
       email: parsed.data.email,
       fullName: parsed.data.fullName,
-      btcAddress: parsed.data.btcAddress,
+      merchantBtcAddress: MERCHANT_BTC_ADDRESS,
       items: enriched.map((i) => ({
         matchId: i.matchId,
         homeTeam: i.match.homeTeam,
@@ -191,7 +186,7 @@ function CheckoutPage() {
                   <div>
                     <div className="font-semibold">Amount due</div>
                     <div className="text-xs text-muted-foreground">
-                      Rate: 1 BTC = {formatUsd(BTC_USD)} (fixed for demo)
+                      Rate: 1 BTC = {formatUsd(BTC_USD)}
                     </div>
                   </div>
                   <div className="text-right">
@@ -201,34 +196,39 @@ function CheckoutPage() {
                 </div>
               </div>
 
-              <Field
-                label="Your BTC wallet address (you'll send payment from this address)"
-                error={errors.btcAddress}
-                hint="Supports Legacy (1…), SegWit (3…) and Bech32 (bc1…) addresses."
-              >
-                <input
-                  type="text"
-                  value={btcAddress}
-                  onChange={(e) => setBtcAddress(e.target.value)}
-                  placeholder="bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
-                  spellCheck={false}
-                  autoComplete="off"
-                  maxLength={90}
-                  required
-                  className="h-11 w-full rounded-md border border-border bg-background px-3 font-mono text-sm outline-none focus:border-primary"
-                />
-              </Field>
+              <div className="rounded-lg border border-border bg-card p-4">
+                <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Send payment to this address
+                </div>
+                <div className="flex items-center gap-2">
+                  <code className="flex-1 break-all rounded bg-background px-3 py-2 font-mono text-sm">
+                    {MERCHANT_BTC_ADDRESS}
+                  </code>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.clipboard.writeText(MERCHANT_BTC_ADDRESS);
+                    }}
+                    className="rounded-md border border-border px-3 py-2 text-xs hover:bg-background"
+                    title="Copy address"
+                  >
+                    Copy
+                  </button>
+                </div>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  Transfer exactly <strong className="text-foreground">{formatBtc(btcTotal)}</strong> to the address above.
+                </p>
+              </div>
 
               <button
                 type="submit"
                 disabled={submitting}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-md gradient-gold px-4 py-3 font-semibold text-primary-foreground transition disabled:opacity-60"
               >
-                {submitting ? "Generating invoice…" : `Confirm & pay ${formatBtc(btcTotal)}`}
+                {submitting ? "Processing order…" : `Confirm order — ${formatBtc(btcTotal)}`}
               </button>
               <p className="text-xs text-muted-foreground">
-                This demo does not broadcast to the Bitcoin network. No funds are
-                transferred. You'll receive a mock order confirmation.
+                Click confirm to proceed to your order confirmation.
               </p>
             </div>
           </form>

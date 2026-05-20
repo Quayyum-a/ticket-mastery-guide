@@ -29,7 +29,7 @@ export const setCart = (items: CartItem[]) => writeCart(items);
 
 export const clearCart = () => writeCart([]);
 
-// Fixed BTC reference rate for the demo. Real apps fetch live rates.
+// Fixed BTC reference rate. Real apps fetch live rates.
 export const BTC_USD = 95000;
 export const usdToBtc = (usd: number) => usd / BTC_USD;
 export const formatBtc = (btc: number) => `₿ ${btc.toFixed(6)}`;

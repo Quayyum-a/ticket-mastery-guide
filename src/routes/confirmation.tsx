@@ -12,7 +12,7 @@ interface Order {
   orderId: string;
   email: string;
   fullName: string;
-  btcAddress: string;
+  merchantBtcAddress: string;
   items: Array<{
     matchId: string;
     homeTeam: string; awayTeam: string;
@@ -42,7 +42,7 @@ function ConfirmationPage() {
     );
   }
 
-  const shortAddr = order.btcAddress.slice(0, 8) + "…" + order.btcAddress.slice(-6);
+  const shortAddr = order.merchantBtcAddress.slice(0, 12) + "…" + order.merchantBtcAddress.slice(-8);
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
@@ -82,10 +82,18 @@ function ConfirmationPage() {
           <h3 className="font-display text-lg tracking-wider">PAYMENT</h3>
           <dl className="mt-3 space-y-2 text-sm">
             <Row label="Method" value="Bitcoin (BTC)" />
-            <Row label="From wallet" value={shortAddr} mono />
+            <Row label="Send to address" value={shortAddr} mono />
             <Row label="Amount" value={formatBtc(order.btcTotal)} />
             <Row label="USD equivalent" value={formatUsd(order.total)} />
           </dl>
+          <div className="mt-4 rounded-lg border border-primary/30 bg-primary/5 p-3">
+            <div className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              Full payment address
+            </div>
+            <code className="block break-all font-mono text-xs text-foreground">
+              {order.merchantBtcAddress}
+            </code>
+          </div>
         </div>
         <div className="rounded-xl border border-border bg-card p-5">
           <h3 className="font-display text-lg tracking-wider">DELIVERY</h3>

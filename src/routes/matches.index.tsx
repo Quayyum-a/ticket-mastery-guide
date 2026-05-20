@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { matches, type Stage } from "@/lib/matches";
 import { MatchCard } from "@/components/MatchCard";
 
-export const Route = createFileRoute("/matches")({
+export const Route = createFileRoute("/matches/")({
   head: () => ({
     meta: [
       { title: "All matches — World Cup Tix" },

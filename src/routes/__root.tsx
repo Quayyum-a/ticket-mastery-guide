@@ -58,8 +58,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "World Cup Tix — Official-style FIFA 2026 ticketing demo" },
-      { name: "description", content: "Browse, search and buy FIFA World Cup 2026 tickets. Pay with Bitcoin. Demo storefront with real FIFA price tiers." },
+      { title: "World Cup Tix — Official FIFA 2026 Ticketing" },
+      { name: "description", content: "Browse, search and buy FIFA World Cup 2026 tickets. Pay with Bitcoin. Official-style storefront with real FIFA price tiers." },
       { property: "og:title", content: "World Cup Tix — FIFA 2026 tickets" },
       { property: "og:description", content: "Browse World Cup 26 matches and pay with BTC." },
       { property: "og:type", content: "website" },
